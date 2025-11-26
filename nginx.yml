@@ -1,0 +1,10 @@
+---
+- name: Update web servers
+  hosts: W1
+  
+
+  tasks:
+  - name: Ensure nginx is installed
+    package:
+      name: nginx
+      state: present

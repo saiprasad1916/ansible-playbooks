@@ -1,0 +1,23 @@
+---
+- name: Update all the servers
+  hosts: all
+  become: yes
+  
+  tasks:
+  - name: Ensure web server is installed
+    package:
+     name: "{{ item.package}}"
+     state: present
+    when: ansible_distribution == item.distribution
+    loop:
+    - { service: 'apache2', distribution: 'Ubuntu' }
+    - { service: 'httpd', distribution: 'CentOS' }
+  - name: Ensure web server is started
+    service:
+     name: "{{ item.service}}"
+     state: present
+     enabled: true
+    when: ansible_distribution == item.distribution
+    loop:
+    - { service: 'apache2', distribution: 'Ubuntu' }
+    - { service: 'httpd', distribution: 'CentOS' }

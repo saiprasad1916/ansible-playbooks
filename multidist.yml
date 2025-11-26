@@ -1,0 +1,41 @@
+ ---
+  - name: Update all servers
+    hosts: all
+
+  tasks:
+  - name: Ensure apache is installed
+    package:
+      name: apache2
+      state: present
+    when: ansible_distribution= "Ubuntu"
+
+  - name: Ensure apache2 is installed
+    service:
+      name: apache2
+      state: present
+    when: ansible_distribution= "Ubuntu"
+  - name: Ensure apache2 is installed
+    service:
+      name: apache2
+      state: present
+      enabled: true
+    when: ansible_distribution= "Ubuntu"
+
+  - name: Ensure httpd is installed
+    package:
+      name: httpd
+      state: present
+    when: ansible_distribution= "CentOS"
+
+  - name: Ensure httpd is installed
+    service:
+      name: httpd
+      state: present
+    when: ansible_distribution= "CentOS"
+
+  - name: Ensure httpd is installed
+    service:
+      name: httpd
+      state: present
+      enabled: true
+    when: ansible_distribution= "CentOS"
